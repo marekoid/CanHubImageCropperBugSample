@@ -3,6 +3,7 @@ package com.example.canhubimagecroppersample
 import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.util.Log
+import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import com.canhub.cropper.CropImageView
 
@@ -22,8 +23,14 @@ class MainActivity : AppCompatActivity() {
                                                    result: CropImageView.CropResult ->
 
             Log.d("bitmap", result.bitmap.toString())
+            Log.d("error", result.error.toString())
+            Log.d("isSuccessful", result.isSuccessful.toString())
         }
         imageView.setImageBitmap(bitmap)
-        imageView.croppedImageAsync()
+
+        val okButton = findViewById<Button>(R.id.okButton)
+        okButton.setOnClickListener {
+            imageView.croppedImageAsync()
+        }
     }
 }
